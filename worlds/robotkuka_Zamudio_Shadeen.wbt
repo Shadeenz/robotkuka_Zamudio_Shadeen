@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.14677587975967846 -0.9740617276046908 -0.17222250705566244 1.7558913776799674
-  position -2.0474135075034363 1.7792506113279678 -0.1493893841585405
+  orientation -0.12884847797162222 -0.9676272084044578 -0.21701533420427288 2.098662038906867
+  position -1.93684708085525 1.6143642518256263 -0.968980472212597
 }
 TexturedBackground {
 }
@@ -11,8 +11,8 @@ TexturedBackgroundLight {
 }
 Floor {
 }
-Solid {
-  translation 0 0.1375 0
+Robot {
+  translation 0 0.138 0
   children [
     DEF SH_BASE Shape {
       appearance PBRAppearance {
@@ -29,6 +29,13 @@ Solid {
         minStop -2.97
         maxStop 2.97
       }
+      device [
+        RotationalMotor {
+          name "servo_1"
+          minPosition -2.97
+          maxPosition 2.97
+        }
+      ]
       endPoint DEF JOINT_1 Solid {
         translation 0 0.18069424585194277 3.5782965436201297e-09
         rotation 1 0 0 7.130232879935179e-06
@@ -77,9 +84,14 @@ Solid {
               minStop -3.32
               maxStop 0.785
             }
+            device [
+              RotationalMotor {
+                name "servo_2"
+              }
+            ]
             endPoint DEF JOINT_2 Solid {
               translation 0 0.26999997582218643 -0.00011426293731127918
-              rotation -0.9999999999999999 0 0 0.00042319607644596277
+              rotation -1 0 0 0.00042319607644596277
               children [
                 DEF GR_JOINT_2 Group {
                   children [
@@ -117,9 +129,14 @@ Solid {
                   jointParameters DEF JOINT_3 HingeJointParameters {
                     axis 0 0 1
                     anchor 0 0.3 0
-                    minStop 2.09
-                    maxStop 2.726
+                    minStop -1.09
+                    maxStop 1
                   }
+                  device [
+                    RotationalMotor {
+                      name "servo_3"
+                    }
+                  ]
                   endPoint DEF JOINT_3 Solid {
                     rotation 0 0 1 0
                     children [
@@ -145,6 +162,11 @@ Solid {
                           minStop -3.229
                           maxStop 3.229
                         }
+                        device [
+                          RotationalMotor {
+                            name "servo_4"
+                          }
+                        ]
                         endPoint DEF JOINT_4 Solid {
                           children [
                             DEF GR_JOINT_4 Group {
@@ -182,34 +204,44 @@ Solid {
                                     }
                                   ]
                                 }
+                                DEF JOINT_5 Transform {
+                                  translation 0 0.81 0
+                                  children [
+                                    DEF HG_JOINT_5 HingeJoint {
+                                      jointParameters DEF joint_5 HingeJointParameters {
+                                        axis 0 1 0
+                                      }
+                                      device [
+                                        RotationalMotor {
+                                          name "servo_5"
+                                        }
+                                      ]
+                                      endPoint DEF LINK_5 Solid {
+                                        rotation 0 1 0 3.4957383712816776
+                                        children [
+                                          Shape {
+                                            appearance PBRAppearance {
+                                              baseColor 0.1803921568627451 0.20392156862745098 0.21176470588235294
+                                            }
+                                            geometry DEF CYL_5 Cylinder {
+                                              height 0.1
+                                              radius 0.05
+                                            }
+                                          }
+                                        ]
+                                        boundingObject USE CYL_5
+                                        physics Physics {
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
                               ]
                             }
-                            DEF HG_JOINT_5 Hinge2Joint {
-                              jointParameters DEF JOINT_1 HingeJointParameters {
-                                axis 0 1 0
-                                anchor 0 0.4 0
-                              }
-                              jointParameters2 JointParameters {
-                              }
-                              endPoint DEF LINK_5 Solid {
-                                translation 0 0.8100000000000003 0
-                                children [
-                                  Shape {
-                                    appearance PBRAppearance {
-                                      baseColor 0 0 0
-                                    }
-                                    geometry DEF GEO_LINK_5 Cylinder {
-                                      height 0.13
-                                      radius 0.05
-                                    }
-                                  }
-                                ]
-                                boundingObject USE GEO_LINK_5
-                                physics Physics {
-                                }
-                              }
-                            }
                           ]
+                          boundingObject USE LINK_3
+                          physics Physics {
+                          }
                         }
                       }
                     ]
@@ -233,5 +265,5 @@ Solid {
       }
     }
   ]
-  name "solid(1)"
+  controller "robotkuka_Zamudio_Shadeen"
 }
