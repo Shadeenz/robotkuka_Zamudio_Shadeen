@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.8080163788941251 0.5555560492139093 0.19613007831706541 0.8238372907547992
-  position 0.7139211286168112 1.3667502161226293 0.9232468930768699
+  orientation -0.14677587975967846 -0.9740617276046908 -0.17222250705566244 1.7558913776799674
+  position -2.0474135075034363 1.7792506113279678 -0.1493893841585405
 }
 TexturedBackground {
 }
@@ -12,189 +12,226 @@ TexturedBackgroundLight {
 Floor {
 }
 Solid {
-  translation 0 0.09999999999999999 0
+  translation 0 0.1375 0
   children [
-    DEF KUKA Group {
-      children [
-        DEF CYL_BASE Shape {
-          appearance PBRAppearance {
-          }
-          geometry Cylinder {
-            height 0.2
-            radius 0.05
-          }
-        }
-        DEF STRUC_1 Transform {
-          translation 0 0.10999999999999993 0
-          children [
-            HingeJoint {
-              jointParameters DEF HINGE_ROT_1 HingeJointParameters {
-                axis 0 1 0
+    DEF SH_BASE Shape {
+      appearance PBRAppearance {
+      }
+      geometry DEF GEO_BASE Cylinder {
+        height 0.275
+        radius 0.118
+      }
+    }
+    DEF HG_JOINT_1 HingeJoint {
+      jointParameters DEF HG_1 HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.182 0
+        minStop -2.97
+        maxStop 2.97
+      }
+      endPoint DEF JOINT_1 Solid {
+        translation 0 0.18069424585194277 3.5782965436201297e-09
+        rotation 1 0 0 7.130232879935179e-06
+        children [
+          DEF GR_JOINT_1 Group {
+            children [
+              DEF BASE_1 Shape {
+                appearance DEF BASE_APP PBRAppearance {
+                  baseColor 0.7294117647058823 0.7411764705882353 0.7137254901960784
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.118 0.08 0.118
+                }
               }
-              endPoint DEF SOL_1 Solid {
-                translation 0 -3.920114351962933e-06 0
+              DEF BASE_LEFT Transform {
+                translation 0 0.060079613646983415 -0.09995218869053943
+                rotation 1 0 0 -1.57
                 children [
-                  DEF STRUC_1 Group {
-                    children [
-                      Shape {
-                        appearance DEF SOLD_1 PBRAppearance {
-                          metalness 0
-                        }
-                        geometry DEF GEO_1 Box {
-                          size 0.1 0.025 0.1
-                        }
-                      }
-                      DEF RIGHT_SOLID Solid {
-                        translation 0 0.04 -0.038
-                        children [
-                          Shape {
-                            appearance PBRAppearance {
-                              metalness 0
-                            }
-                            geometry DEF RIGHT_SOLID Box {
-                              size 0.1 0.1 0.025
-                            }
-                          }
-                        ]
-                        name "solid(3)"
-                        boundingObject USE RIGHT_SOLID
-                        physics Physics {
-                        }
-                      }
-                      DEF LEFT_SOLID Solid {
-                        translation 0 0.04 0.04
-                        children [
-                          Shape {
-                            appearance PBRAppearance {
-                              metalness 0
-                            }
-                            geometry DEF LEFT_SOLID Box {
-                              size 0.1 0.1 0.025
-                            }
-                          }
-                        ]
-                        name "solid(4)"
-                        boundingObject USE LEFT_SOLID
-                        physics Physics {
-                        }
-                      }
-                    ]
-                  }
-                  DEF LINK_1 HingeJoint {
-                    jointParameters HingeJointParameters {
-                      axis 0 0 1
-                      anchor -0.000102266 0.05 0
+                  DEF BASE_LEFT Shape {
+                    appearance USE BASE_APP
+                    geometry Box {
+                      size 0.125 0.08 0.2
                     }
-                    endPoint Solid {
-                      translation -0.0001022657132465159 0.17999997094923076 0
-                      rotation 0 0 1 0.0005681428817262297
+                  }
+                ]
+              }
+              DEF BASE_RIGHT Transform {
+                translation 0 0.05992034830483674 0.10004774789582749
+                rotation 1 0 0 -1.57
+                children [
+                  DEF BASE_RIGTH Shape {
+                    appearance USE BASE_APP
+                    geometry Box {
+                      size 0.125 0.08 0.2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          DEF HG_2 HingeJoint {
+            jointParameters DEF JOINT_2 HingeJointParameters {
+              axis 0 0 1
+              anchor 0 0.135 0
+              minStop -3.32
+              maxStop 0.785
+            }
+            endPoint DEF JOINT_2 Solid {
+              translation 0 0.26999997582218643 -0.00011426293731127918
+              rotation -0.9999999999999999 0 0 0.00042319607644596277
+              children [
+                DEF GR_JOINT_2 Group {
+                  children [
+                    DEF LINK_1 Shape {
+                      appearance USE BASE_APP
+                      geometry Box {
+                        size 0.11 0.38 0.11
+                      }
+                    }
+                    DEF LINK_2_RIGHT Transform {
+                      translation 0 0.28 -0.10999999999999999
                       children [
-                        DEF link_1 Group {
+                        DEF LINK_2 Shape {
+                          appearance USE BASE_APP
+                          geometry Box {
+                            size 0.11 0.28 0.11
+                          }
+                        }
+                      ]
+                    }
+                    DEF LINK_3 Transform {
+                      translation 0 0.28 0.10999999999999999
+                      children [
+                        DEF LINK_2 Shape {
+                          appearance USE BASE_APP
+                          geometry Box {
+                            size 0.11 0.28 0.11
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+                DEF HG_3 HingeJoint {
+                  jointParameters DEF JOINT_3 HingeJointParameters {
+                    axis 0 0 1
+                    anchor 0 0.3 0
+                    minStop 2.09
+                    maxStop 2.726
+                  }
+                  endPoint DEF JOINT_3 Solid {
+                    rotation 0 0 1 0
+                    children [
+                      DEF DEF_JOINT_3 Group {
+                        children [
+                          DEF LINK_3 Transform {
+                            translation 0 0.4500000000000002 0
+                            children [
+                              DEF LINK_3 Shape {
+                                appearance USE BASE_APP
+                                geometry Box {
+                                  size 0.11 0.28 0.11
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                      DEF HG_4 HingeJoint {
+                        jointParameters DEF JOINT_4 HingeJointParameters {
+                          axis 0 1 0
+                          anchor 0 0.32 0
+                          minStop -3.229
+                          maxStop 3.229
+                        }
+                        endPoint DEF JOINT_4 Solid {
                           children [
-                            Shape {
-                              appearance PBRAppearance {
-                                metalness 0
-                              }
-                              geometry DEF LINK_1 Box {
-                                size 0.06 0.25 0.05
-                              }
-                            }
-                            DEF RIGHT_SOLID Solid {
-                              translation 0 0.13999999999999996 -0.038
+                            DEF GR_JOINT_4 Group {
                               children [
-                                Shape {
-                                  appearance PBRAppearance {
-                                    metalness 0
-                                  }
-                                  geometry DEF RIGHT_SOLID Box {
-                                    size 0.1 0.15 0.025
-                                  }
+                                DEF LINK_3_LEFT Transform {
+                                  translation 0 0.7200000000000004 0.09999999999999999
+                                  children [
+                                    DEF LINK_3_LEFT Shape {
+                                      appearance USE BASE_APP
+                                      geometry Box {
+                                        size 0.11 0.11 0.11
+                                      }
+                                    }
+                                  ]
+                                }
+                                DEF LINK_3_RIGHT Transform {
+                                  translation 0 0.7200000000000004 -0.09999999999999999
+                                  children [
+                                    DEF LINK_3_LEFT Shape {
+                                      appearance USE BASE_APP
+                                      geometry Box {
+                                        size 0.11 0.11 0.11
+                                      }
+                                    }
+                                  ]
+                                }
+                                DEF LINK_3 Transform {
+                                  translation 0 0.6500000000000004 3.469446951953614e-18
+                                  children [
+                                    DEF LINK_3_LEFT Shape {
+                                      appearance USE BASE_APP
+                                      geometry Box {
+                                        size 0.11 0.12 0.11
+                                      }
+                                    }
+                                  ]
                                 }
                               ]
-                              name "solid(1)"
-                              boundingObject USE RIGHT_SOLID
-                              physics Physics {
-                              }
                             }
-                            DEF LEFT_SOLID Solid {
-                              translation 0 0.13999999999999996 0.03200000000000001
-                              children [
-                                Shape {
-                                  appearance PBRAppearance {
-                                    metalness 0
+                            DEF HG_JOINT_5 Hinge2Joint {
+                              jointParameters DEF JOINT_1 HingeJointParameters {
+                                axis 0 1 0
+                                anchor 0 0.4 0
+                              }
+                              jointParameters2 JointParameters {
+                              }
+                              endPoint DEF LINK_5 Solid {
+                                translation 0 0.8100000000000003 0
+                                children [
+                                  Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 0 0 0
+                                    }
+                                    geometry DEF GEO_LINK_5 Cylinder {
+                                      height 0.13
+                                      radius 0.05
+                                    }
                                   }
-                                  geometry DEF RIGHT_SOLID Box {
-                                    size 0.1 0.15 0.025
-                                  }
+                                ]
+                                boundingObject USE GEO_LINK_5
+                                physics Physics {
                                 }
-                              ]
-                              name "solid(2)"
-                              boundingObject USE RIGHT_SOLID
-                              physics Physics {
                               }
                             }
                           ]
                         }
-                        DEF link_2 HingeJoint {
-                          jointParameters HingeJointParameters {
-                            axis 0 0 1
-                            anchor -3.29175e-05 0.14 0
-                          }
-                          endPoint Solid {
-                            translation -3.29174848803411e-05 0.2837619677698608 0
-                            rotation 0 0 1 0
-                            children [
-                              Shape {
-                                appearance PBRAppearance {
-                                  metalness 0
-                                }
-                                geometry DEF LINK_2 Box {
-                                  size 0.06 0.25 0.05
-                                }
-                              }
-                            ]
-                            boundingObject USE LINK_2
-                            physics Physics {
-                            }
-                          }
-                        }
-                        DEF link_3 HingeJoint {
-                          jointParameters HingeJointParameters {
-                          }
-                          endPoint Solid {
-                            translation 0 0.43000000000000016 0
-                            children [
-                              Shape {
-                                geometry DEF CYL Cylinder {
-                                  height 0.1
-                                  radius 0.03
-                                }
-                              }
-                            ]
-                            name "solid(3)"
-                            boundingObject USE CYL
-                            physics Physics {
-                            }
-                          }
-                        }
-                      ]
-                      boundingObject DEF LINK_1 Box {
-                        size 0.06 0.25 0.05
                       }
-                      physics Physics {
-                      }
+                    ]
+                    boundingObject USE DEF_JOINT_3
+                    physics Physics {
                     }
                   }
-                ]
-                boundingObject USE GEO_1
-                physics Physics {
                 }
+              ]
+              boundingObject USE GR_JOINT_2
+              physics Physics {
               }
             }
-          ]
+          }
+        ]
+        boundingObject USE GR_JOINT_1
+        physics Physics {
+          density -1
+          mass 55
         }
-      ]
+      }
     }
   ]
-  boundingObject USE GEO_1
+  name "solid(1)"
 }
